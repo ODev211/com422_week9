@@ -1,6 +1,5 @@
 from abc import ABC, abstractmethod
 
-# Bridge design pattern
 class Vehicle(ABC):
     def __init__(self, registration_number, weight):
         self.registration_number = registration_number
