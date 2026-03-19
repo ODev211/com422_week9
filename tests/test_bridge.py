@@ -1,12 +1,16 @@
-from toll_bridge_project import bridge_system
 import pytest
+from toll_bridge_project.bridge import Bridge
+from toll_bridge_project.motorbike import Motorbike
 
-# First test for motorbike
-def test_motorbike_fee():
-    motorbike = bridge_system.Motorbike("ABC123", 100)
-    assert motorbike.calculate_fee() == 3.00
+def test_bridge_weight_limit():
+    b = Bridge()
+    # Adding a very heavy vehicle
+    heavy_truck = Motorbike("TANK", 30001) 
+    assert b.add_vehicle(heavy_truck) is False
 
-# Car test
-def test_car_fee():
-    car = bridge_system.Car("DEF456", 2000)
-    assert car.calculate_fee() == 5.00
+def test_bridge_capacity():
+    b = Bridge()
+    for i in range(20):
+        b.add_vehicle(Motorbike(f"M{i}", 100))
+    # 21st vehicle should fail
+    assert b.add_vehicle(Motorbike("M21", 100)) is False
