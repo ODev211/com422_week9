@@ -27,3 +27,6 @@ class Bridge:
                 self.vehicles.remove(vehicle)
                 print(f"Vehicle removed: {reg_number}")
                 return True
+
+        print("Vehicle not found.")
+        return False
